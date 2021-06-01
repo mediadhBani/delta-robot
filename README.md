@@ -1,2 +1,12 @@
-# delta-robot
-Projet SU pour la commande d'un robot parallèle
+# Commande référencée, vision d’un robot parallèle de type DELTA
+<tt>Traitement d'image</tt> <tt>Robotique</tt> <tt>Sorbonne Université</tt>
+
+Commande d'un robot parallèle pour la traque d'une cible colorée.  L’objectif est de transformer ce dispositif en un banc expérimental pédagogique pour illustrer les concepts de modèle géométrique et cinématique inverse et de commande référencée capteur (asservissement visuel).
+
+## Liste des tâches
+- [ ] Assembler l’imprimante 3D livrée en kit ;
+- [ ] Prendre en main la commande opérationnelle en position de l’imprimante et son modèle géométrique inverse ;
+- [ ] Concevoir une pièce d’adaptation sur l’extrudeur pour fixer une caméra ;
+- [ ] L’imprimer et la monter ;
+- [ ] Implémenter l’acquisition d’image et la détection d’un objet coloré posé sur le plateau ;
+- [ ] Implémenter le code qui permet de centrer l’image sur l’objet et le suivre quand celui-ci est déplacé manuellement.
