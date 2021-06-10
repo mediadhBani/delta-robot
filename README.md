@@ -15,3 +15,6 @@ Commande d'un robot parallèle pour la traque d'une cible colorée.  L’objecti
 [Lien vers le drive contenant les softwares](https://drive.google.com/drive/folders/0B1DQUrzkDP-tNDU0NXhVcGhlc0k) pour installer :
 - Micromake ;
 - Cura.
+
+## Issues: 
+  -if bad home position, we need to check this website : https://reprap.org/forum/read.php?178,637972
