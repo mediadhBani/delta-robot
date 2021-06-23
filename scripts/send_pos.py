@@ -1,42 +1,43 @@
 import serial as serial
 import click
+import numpy as np
 import time
 
+DEFAULT_VELOCITY = 1000
+
 class Kossel:
-    def __init__(self, port: str, height: float, forearm: float,
-                 in_radius: float, out_radius: float):
+    def __init__(self, port: str, height: float, forearm: float, in_radius: float, out_radius: float):
 
         self._x, self._y, self._z = 0, 0, height
+        self._height = height
+        self._forearm = forearm
+        self._in_radius, self._out_radius = in_radius, out_radius
 
         self._s = serial.Serial(port, 250000)
-        self.h = (0, 0, height)
 
         self._s.write(b'G90\n')
-        self.home() 
+        self.home()
 
-        time.sleep(2)
+    def home(self, pause=5):
+        self._s.write(b'G0 F2000\nG28\n')  # initialisation de la position
+        self._x, self._y, self._z = 0, 0, self._height
+        time.sleep(pause)
 
-    def home(self):
-        self._s.write(b'G28\n')  # initialisation de la position
-        self._x, self._y, self._z = self.h
-        time.sleep(2)
-
-    def goto(self, x: float=0, y: float=0, z: float=0, pause: float=0):
+    def goto(self, x: float = 0, y: float = 0, z: float = 0, v: float = DEFAULT_VELOCITY, pause: float = 0):
         if self.can_reach(x, y, z):
-            self._x, self._y , self._z = x, y, z
-            self._s.write(bytes(f'G1 X{x} Y{y} Z{z}\n', encoding='utf-8'))
+            self._x, self._y, self._z = x, y, z
+            self._s.write(bytes(f'G0 X{x} Y{y} Z{z} F{v}\n', encoding='utf-8'))
 
             time.sleep(pause)
         else:
             print(f"WRN Can't reach target : X{x} Y{y} Z{z}")
-    
-    def move(self, x: float=0, y: float=0, z: float=0, pause: float=0):
-        self.goto(self._x + x, self._y + y, self._z + z, pause)
+
+    def move(self, x: float = 0, y: float = 0, z: float = 0, v: float = DEFAULT_VELOCITY, pause: float = 0):
+        self.goto(self._x + x, self._y + y, self._z + z, v, pause)
 
     def can_reach(self, x: float, y: float, z: float):
-        # if self.L**2 - (self.r - self.R + x)**2 - 
-        return True
-        
+        return x**2 + y**2 <= self._out_radius**2
+
 
 if __name__ == '__main__':
     try:
@@ -50,28 +51,27 @@ if __name__ == '__main__':
     ser.write(b'G91\n')  # deplacements relatifs
     time.sleep(1)
 
-
     while True:
         c = click.getchar(echo=False)
 
         if c == 'z':  # mouvement x+
-            ser.write(b'G1 X5\n')
+            ser.write(b'G0 X5\n')
 
         elif c == 's':  # mouvement x-
-            ser.write(b'G1 X-5\n')
-        
+            ser.write(b'G0 X-5\n')
+
         elif c == 'e':  # mouvement y+
-            ser.write(b'G1 Y5\n')
-        
+            ser.write(b'G0 Y5\n')
+
         elif c == 'd':  # mouvement y-
-            ser.write(b'G1 Y-5\n')
-        
+            ser.write(b'G0 Y-5\n')
+
         elif c == 'r':  # mouvement z+
-            ser.write(b'G1 Z5\n')
+            ser.write(b'G0 Z5\n')
 
         elif c == 'f':  # mouvement z-
-            ser.write(b'G1 Z-5\n')
-        
+            ser.write(b'G0 Z-5\n')
+
         elif c == 'h':  # retour position home
             ser.write(b'G28\n')
 

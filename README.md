@@ -6,9 +6,9 @@ Commande d'un robot parallèle pour la traque d'une cible colorée.  L’objecti
 ## Liste des tâches
 - [x] Assembler l’imprimante 3D livrée en kit ;
 - [ ] Prendre en main la commande opérationnelle en position de l’imprimante et son modèle géométrique inverse ;
-- [ ] Concevoir une pièce d’adaptation sur l’extrudeur pour fixer une caméra ;
+- [x] Concevoir une pièce d’adaptation sur l’extrudeur pour fixer une caméra ;
 - [ ] L’imprimer et la monter ;
-- [ ] Implémenter l’acquisition d’image et la détection d’un objet coloré posé sur le plateau ;
+- [x] Implémenter l’acquisition d’image et la détection d’un objet coloré posé sur le plateau ;
 - [ ] Implémenter le code qui permet de centrer l’image sur l’objet et le suivre quand celui-ci est déplacé manuellement.
 
 ## Installation des logiciels _micromake_
