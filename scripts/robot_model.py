@@ -1,10 +1,6 @@
 """
 @brief Script contenant les modèles géométriques direct et inverse d'un robot
 type delta linéaire (connu aussi sous le nom de Kossel ou Rostock).
-
-@author Mohamed-iadh BANI <mohamed-iadh.bani@etu.sorbonne-universite.fr>
-
-@date 2021-07-09
 """
 
 import serial

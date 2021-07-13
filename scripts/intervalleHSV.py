@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 @brief Programme pour déterminer la couleur moyenne et l'écart-type d'une image.
-
-@author Mohamed-iadh BANI
-@date 2021-06-29
 """
 
 import numpy as np

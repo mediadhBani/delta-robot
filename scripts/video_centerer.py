@@ -1,10 +1,6 @@
 """
 @brief Script pour centrer la caméra montée sur l'effecteur du robot sur une
 cible colorée.
-
-@author Mohamed-iadh BANI <mohamed-iadh.bani@etu.sorbonne-universite.fr>
-
-@date 2021-07-09
 """
 
 import cv2
